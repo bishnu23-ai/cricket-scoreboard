@@ -1,0 +1,43 @@
+// script.js
+
+const apiUrl = "https://api.cricapi.com/v1/currentMatches?apikey=YOUR_API_KEY";
+
+// Function to fetch and update scoreboard
+async function fetchLiveScore() {
+  try {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+    
+    // Check if there is a match ongoing
+    if (data.matches && data.matches.length > 0) {
+      const match = data.matches[0]; // Use the first match (you can loop through matches if needed)
+      const team1 = match.team1;
+      const team2 = match.team2;
+      const score1 = match.score1;
+      const score2 = match.score2;
+      const over = match.over;
+      const status = match.status;
+      
+      // Update the HTML elements with the fetched data
+      document.getElementById('team-1-name').textContent = team1;
+      document.getElementById('team-2-name').textContent = team2;
+      document.getElementById('team-1-score').textContent = score1 ? score1 : '--';
+      document.getElementById('team-2-score').textContent = score2 ? score2 : '--';
+      document.getElementById('over').textContent = `Over: ${over ? over : '--'}`;
+      document.getElementById('status').textContent = `Status: ${status ? status : '--'}`;
+      document.getElementById('match-title').textContent = `Live Match: ${team1} vs ${team2}`;
+    } else {
+      // If no live matches
+      document.getElementById('match-title').textContent = "No Live Matches Currently";
+    }
+  } catch (error) {
+    console.error("Error fetching live data", error);
+    document.getElementById('status').textContent = "Error loading scores";
+  }
+}
+
+// Fetch live score every 30 seconds
+setInterval(fetchLiveScore, 30000);
+
+// Initial fetch
+fetchLiveScore();

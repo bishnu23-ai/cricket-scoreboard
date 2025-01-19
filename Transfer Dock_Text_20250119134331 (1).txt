@@ -1,0 +1,60 @@
+/* style.css */
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #2f4f4f;
+}
+
+.scoreboard {
+  width: 80%;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  color: #333;
+  text-align: center;
+  font-size: 2em;
+}
+
+.teams {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.2em;
+  margin-top: 20px;
+}
+
+.team {
+  padding: 10px;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  flex: 1;
+  text-align: center;
+  margin: 0 10px;
+}
+
+.team span {
+  font-weight: bold;
+}
+
+.live-info {
+  margin-top: 20px;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+#over, #status {
+  margin: 5px 0;
+}
+
+@media (max-width: 768px) {
+  .teams {
+    flex-direction: column;
+  }
+}
